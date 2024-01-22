@@ -4,6 +4,8 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 import subprocess
 import json
+#fast api sever call
+import uvicorn
 
 # custom 
 import pandas as pd
@@ -80,6 +82,15 @@ def process_output(recommended_cars):
 
 
 ## END 
+
+class ParamRequest(BaseModel):
+    id_type: str
+    marital_status: str
+    gender: str
+    employment_type: str
+    credit_score:  int
+
+
 app = FastAPI()
 
 
@@ -94,7 +105,7 @@ def load_model():
     return "classifier"
  
 @app.post('/invocations')
-def invocations(request):
+def invocations(request:ParamRequest):
     print("Request",request)
     try:
         # Extract values from the request
@@ -138,3 +149,7 @@ def invocations(request):
         return HTTPException(status_code=500, detail=error_message)
 
     #return {"message": "Invocation Request Received"}
+
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

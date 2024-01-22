@@ -1,5 +1,7 @@
 numpy
 pandas
-tensorflow
-sklearn
+scikit-learn==1.3.2
 joblib
+tensorrt
+tensorflow[and-cuda]==2.13.0
+Pyarrow

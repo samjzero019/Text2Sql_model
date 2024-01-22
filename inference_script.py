@@ -102,5 +102,7 @@ def main():
     
     list_recommended_cars = process_output(recommended_cars)
     
-    
+    print("recom: ", list_recommended_cars)
     return list_recommended_cars
+
+main()
